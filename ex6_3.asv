@@ -1,0 +1,16 @@
+t = 1 : 0.5 : 8
+y = [33.4 79.5 122.65 159.05 189.15 214.15 238.65 252.2 287.55 280.50 296.65 301.65 310.40 318.15 325.15]
+A = polyfit(t, y, 2);
+z = polyval(A, t);
+plot(t, y, 'r*', t, z, 'b')
+lnt = ln(t)
+lny = ln(y)
+A = polyfit(t, y, 2);
+z = polyval(A, t);
+
+
+hold on;
+t0 = min(t) : max(t);
+Y0 = fun(B(1), B(2), B(3), t0);
+plot(t0, Y0, 'r');
+hold off;
