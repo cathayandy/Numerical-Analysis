@@ -1,9 +1,11 @@
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 const double D1 = 0.1;
 const double D2 = 1e-4;
 const double L = 0.999;
+FILE* out;
 
 typedef double (*PDD)(double);
 
@@ -26,7 +28,7 @@ double dF2(double x) {
 double newton(double x0, PDD f, PDD df, double delta1, double delta2, double lamda) {
 	int k = 0;
 	double x[2] = {x0, f(x0)}, ans = x0;
-	printf("Before the 1st iteration: lamda = %f, epsilon = %f\n", lamda, delta2);
+	fprintf(out, "Before the 1st iteration: lamda = %f, epsilon = %f\n", lamda, delta2);
 	while(fabs(f(ans)) > delta1 || fabs(x[1] - x[0]) > delta2) {
 		double s = f(ans) / df(ans);
 		double l = lamda;
@@ -36,7 +38,7 @@ double newton(double x0, PDD f, PDD df, double delta1, double delta2, double lam
 			l /= 2;
 		}
 		k ++;
-		printf("Iteration%d: x = %f\n", k, ans);
+		fprintf(out, "Iteration%d: x = %f, lamda = %f\n", k, ans, l);
 		x[0] = x[1];
 		x[1] = ans;
 	}
@@ -44,7 +46,10 @@ double newton(double x0, PDD f, PDD df, double delta1, double delta2, double lam
 }
 
 int main() {
-	printf("The final answer is: %f\n", newton(0.6, &f1, &dF1, D1, D2, L));
-	printf("The final answer is: %f\n", newton(1.2, &f2, &dF2, D1, D2, L));
+	FILE* fileout = fopen("../result/ex2_2.txt", "w");
+    out = fileout;
+    fprintf(out, "The final answer is: %f\n", newton(0.6, &f1, &dF1, D1, D2, L));
+	fprintf(out, "The final answer is: %f\n", newton(1.2, &f2, &dF2, D1, D2, L));
+    fclose(fileout);
 	return 0;
 }

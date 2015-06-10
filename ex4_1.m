@@ -7,8 +7,15 @@ end;
 A
 b
 % Jacobi(zeros(1, 10), A, b)
-% SOR(zeros(1, 10), A, b, 1.25)
-for i = 0.25 : 0.25 : 1.75
+i = 1.25
+[x, tmp] = SOR(zeros(1, 10), A, b, 1.25)
+k = 1;
+for i = 0.1 : 0.05 : 1.9
     i
-    SOR(zeros(1, 10), A, b, i)
+    [x, n(k)] = SOR(zeros(1, 10), A, b, i);
+    x
+    n(k)
+    k = k + 1;
 end;
+i = 1 : 37;
+plot(i, n);

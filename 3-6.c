@@ -52,7 +52,7 @@ double* solveRightMat(double** M, double v, int n) {
 	double* x = calloc(sizeof(double) * n);
 	for(i = n - 1; i >= 0; i --) {
 		if(M[i][i] == 0)
-			hbreak;
+			break;
 		x[i] = v[i];
 		for(j = n - 1; j >= i + 1; j --)
 			x[i] -= M[i][j] * x[j];
