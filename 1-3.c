@@ -6,8 +6,8 @@ int main() {
 	float ans = 0, last;
 	int n = 1;
 	long long i;
-	long long dN = 0x0002000000000000;
-	double dAns = 0, delta, sum, ori = 33.33333, cha, tmp = 0, time, absolute_deviation, relative_deviation;
+	long long dN = 0x0001000000000000;
+	double dAns = 0, delta, sum, ori = 33.333, cha, tmp = 0, time, absolute_deviation, relative_deviation;
     clock_t s, t;
     FILE* fileout = fopen("../result/ex1_3.txt", "w"), *out = fileout;
 	while(1) {
